@@ -71,11 +71,17 @@ class QuestionsTest(LiveServerTestCase):
 		self.browser.find_element_by_css_selector("input[type='submit']").click()
 		
 		# He navigates to the admin list of questions
-		self.browser.find_element_by_link_text("Questions").click()
+		self.browser.find_elements_by_link_text("Questions")[1].click()
 		
 		# He selects one and archives it
+		self.browser.find_element_by_link_text("Why didn't you build this in Wordpress?").click()
+		status_select = self.browser.find_element_by_css_selector("#id_status")
+		for option in status_select.find_elements_by_tag_name('option'):
+			if option.text == 'archived':
+				option.click()
+		self.browser.find_element_by_css_selector("input[type='submit']").click()
 		
 		# He goes to the homepage and confirms that the question is no longer visible
-		
-		time.sleep(5)
-		self.fail('finish test')
+		self.browser.get(self.live_server_url + '/')
+		body = self.browser.find_element_by_tag_name('body')
+		self.assertNotIn("Why didn't you build this in Wordpress?", body.text)

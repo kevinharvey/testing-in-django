@@ -5,7 +5,7 @@ from questions.models import Question
 from questions.forms import QuestionForm
 
 def home(request):
-	current_questions = Question.objects.all().order_by('-votes')
+	current_questions = Question.objects.exclude(status="archived").order_by('-votes')
 	form = QuestionForm()
 	return render(request, 'home.html', {'current_questions': current_questions,
 										 'form': form})
