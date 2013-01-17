@@ -36,7 +36,7 @@ class QuestionsTest(LiveServerTestCase):
 		
 		# Her voted up question is now at the top of the list
 		all_questions = self.browser.find_elements_by_css_selector("div.trq-question")
-		self.assertEqual(all_questions[0], self.browser.find_element_by_css_selector("div#trq-question-2"))
+		self.assertEqual(all_questions[0].get_attribute("id"), "trq-question-2")
 		
 		# She sees a silly question and votes it down. No
 		# time for that type of stuff in a Django talk
