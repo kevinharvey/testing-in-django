@@ -20,6 +20,10 @@ class QuestionsTest(LiveServerTestCase):
 		self.assertEqual(heading.text, "Torquemada")
 
 		# She browses through the existing questions
+		question_1 = self.browser.find_element_by_css_selector("div#trq-question-1 h4")
+		self.assertEqual(question_1.text, "How can my team get started with testing?")
+		question_2 = self.browser.find_element_by_css_selector("div#trq-question-2 h4")
+		self.assertEqual(question_1.text, "Does Selenium only work in Firefox?")
 		
 		# She sees a question that she'd like to have answered,
 		# and votes it up
