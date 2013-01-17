@@ -46,3 +46,20 @@ class HomePageViewTest(TestCase):
 		
 		question_1_after_vote = Question.objects.get(id=1)
 		self.assertEqual(question_1.votes, 4)
+		
+
+class ModelTests(TestCase):
+	
+	def test_questions_increment_votes_up(self):
+		"""
+		Test voting up a question
+		"""
+		question_1 = Question(text="How can my team get started with testing?",
+							  votes=7,
+							  created=datetime.datetime.utcnow().replace(tzinfo=utc),
+							  status="new")
+							
+		question_1.increment_votes(4)
+		
+		self.assertEquals(question_1.votes, 11)
+		
