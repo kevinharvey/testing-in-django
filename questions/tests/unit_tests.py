@@ -45,7 +45,7 @@ class HomePageViewTest(TestCase):
 		self.assertRedirects(response, '/')
 		
 		question_1_after_vote = Question.objects.get(id=1)
-		self.assertEqual(question_1.votes, 4)
+		self.assertEqual(question_1_after_vote.votes, 4)
 		
 
 class ModelTests(TestCase):
