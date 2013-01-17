@@ -28,9 +28,9 @@ class QuestionsTest(LiveServerTestCase):
 		self.assertEqual(question_1.text, "How can my team get started with testing?")
 		question_2 = self.browser.find_element_by_css_selector("div#trq-question-2 h4")
 		self.assertEqual(question_2.text, "Does Selenium only work in Firefox?")
-		
+				
 		# She sees a question that she'd like to have answered, and votes it up
-		vote_for_2 = self.browser.find_element_by_css_selector("div#trq-question-2").click().follow()
+		vote_for_2 = self.browser.find_element_by_css_selector("div#trq-question-2 a.trq-vote-up").click()
 		vote_tally = self.browser.find_element_by_css_selector("div#trq-question-2 .trq-vote-count")
 		self.assertEqual(vote_tally.text, "Votes: 1")
 		
