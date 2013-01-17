@@ -1,7 +1,15 @@
+{% load url from future %}
+
 <h1 id="trq-heading">Torquemada</h1>
 
 {% for question in current_questions %}
-<div id="trq-question-{{ question.id }}">
+<div id="trq-question-{{ question.id }}" class="trq-question">
+	
 	<h4>{{ question.text }}</h4>
+	
+	<span class="trq-vote-count">Votes: {{ question.votes }}</span>
+	
+	<a class="trq-vote-up" href="{% url 'voteup' question.id %}">vote up</a>
+
 </div>
 {% endfor %}
