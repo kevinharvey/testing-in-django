@@ -120,7 +120,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-	'questions',
+    'questions',
+    'django_jenkins',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -151,6 +152,12 @@ LOGGING = {
         },
     }
 }
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_pylint',
+    'django_jenkins.tasks.with_coverage',
+    'django_jenkins.tasks.django_tests',
+)
 
 # http://stackoverflow.com/questions/12771167/django-settings-py-dj-database-url-on-heroku
 if os.environ.get('DATABASE_URL'):
