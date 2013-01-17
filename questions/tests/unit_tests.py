@@ -52,7 +52,7 @@ class HomePageViewTest(TestCase):
 		"""
 		Test that POSTing the right data will result in a new question
 		"""
-		response = self.client.post('/ask/', {'question': 'Is there any more pizza?'})
+		response = self.client.post('/ask/', {'text': 'Is there any more pizza?'})
 		
 		self.assertRedirects(response, '/')
 		
