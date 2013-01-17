@@ -25,3 +25,5 @@ class HomePageViewTest(TestCase):
 		self.assertEquals(response.status_code, 200)
 		
 		self.assertTemplateUsed(response, 'home.html')
+		
+		self.assertIn(response.body, "How can my team get started with testing?")
