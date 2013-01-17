@@ -47,6 +47,10 @@ class QuestionsTest(LiveServerTestCase):
 		self.assertEqual(vote_tally_3.text, "Votes: -1")
 		
 		# She then asks a question of her own.
-
-		# TODO
-		self.fail('finish this test')
+		form = self.browser.find_element_by_css_selector("form")
+		form['text'].clear()
+		form['text'].send_keys("Why aren't using reverse() for your URLs in views?")
+		form.submit().follow()
+		
+		self.assertContains(self.browser.find_element_by_css_selector("div#trq-question-4 h4"),
+							"Why aren't using reverse() for your URLs in views?")
