@@ -9,3 +9,7 @@ class Question(models.Model):
 									   ('archived','archived',))
 							 )
 	created = models.DateTimeField(auto_now_add=True)
+	
+	def increment_votes(self, int):
+		self.votes += int
+		self.save()
