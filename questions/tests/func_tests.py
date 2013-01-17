@@ -5,7 +5,7 @@ import time
 
 class QuestionsTest(LiveServerTestCase):
 	
-	fixtures = ['questions',]
+	fixtures = ['questions', 'admin_users']
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
@@ -54,3 +54,28 @@ class QuestionsTest(LiveServerTestCase):
 		
 		self.assertEqual(self.browser.find_element_by_css_selector("div#trq-question-4 h4").text,
 						 "Why aren't using reverse() for your URLs in views?")
+						
+	def test_admin_can_manage_questions(self):
+		# Peter goes to the admin site and sees the familiar "Django Administration" heading
+		self.browser.get(self.live_server_url + '/admin/')
+		body = self.browser.find_element_by_tag_name('body')
+		self.assertIn('Django administration', body.text)
+		
+		# Reassured, he logs in
+		username = self.browser.find_element_by_css_selector("input#id_username")
+		username.clear()
+		username.send_keys("peter")
+		password = self.browser.find_element_by_css_selector("input#id_password")
+		password.clear()
+		password.send_keys("password")
+		self.browser.find_element_by_css_selector("input[type='submit']").click()
+		
+		# He navigates to the admin list of questions
+		self.browser.find_element_by_link_text("Questions").click()
+		
+		# He selects one and archives it
+		
+		# He goes to the homepage and confirms that the question is no longer visible
+		
+		time.sleep(5)
+		self.fail('finish test')
