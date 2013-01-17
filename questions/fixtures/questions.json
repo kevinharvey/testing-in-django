@@ -18,5 +18,15 @@
             "votes": 0, 
             "created": "2013-01-17T16:17:48.381Z"
         }
+    },
+	{
+        "pk": 3, 
+        "model": "questions.question", 
+        "fields": {
+            "status": "new", 
+            "text": "Why didn't you build this in Wordpress?", 
+            "votes": 0, 
+            "created": "2013-01-17T16:17:52.381Z"
+        }
     }
 ]

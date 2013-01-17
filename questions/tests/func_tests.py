@@ -38,8 +38,13 @@ class QuestionsTest(LiveServerTestCase):
 		all_questions = self.browser.find_elements_by_css_selector("div.trq-question")
 		self.assertEqual(all_questions[0].get_attribute("id"), "trq-question-2")
 		
-		# She sees a silly question and votes it down. No
-		# time for that type of stuff in a Django talk
+		# She sees a silly question and votes it down. No time for that type of stuff 
+		# in a Django talk
+		question_3 = self.browser.find_element_by_css_selector("div#trq-question-3 h4")
+		self.assertEqual(question_3.text, "Why didn't you build this in Wordpress?")
+		vote_down_3 = self.browser.find_element_by_css_selector("div#trq-question-3 a.trq-vote-down").click()
+		vote_tally_3 = self.browser.find_element_by_css_selector("div#trq-question-3 .trq-vote-count")
+		self.assertEqual(vote_tally_3.text, "Votes: -1")
 		
 		# She then asks a question of her own.
 
