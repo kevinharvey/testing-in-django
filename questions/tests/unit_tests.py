@@ -3,6 +3,7 @@ import datetime
 from django.utils.timezone import utc
 
 from questions.models import Question
+from questions.forms import QuestionForm
 
 class HomePageViewTest(TestCase):
 	
@@ -75,3 +76,13 @@ class ModelTests(TestCase):
 		question_1.increment_votes(-13)
 
 		self.assertEquals(question_1.votes, -17)
+		
+class FormTests(TestCase):
+	
+	def test_question_form_excludes_all_but_text(self):
+		"""
+		The user can only supply the text of a question
+		"""
+		form = QuestionForm()
+		self.assertNotEquals(form.fields.keys(), ['text'])
+		self.assertNotEquals(form.fields.keys(), ['text', 'votes', 'status', 'created'])
