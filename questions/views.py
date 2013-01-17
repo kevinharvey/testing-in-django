@@ -7,7 +7,10 @@ def home(request):
 	current_questions = Question.objects.all().order_by('-votes')
 	return render(request, 'home.html', {'current_questions': current_questions})
 	
-def voteup(request, pk):
+def vote(request, pk, verb):
 	q = Question.objects.get(id=pk)
-	q.increment_votes(1)
+	if verb == "up":
+		q.increment_votes(1)
+	elif verb == "down":
+		q.increment_votes(-1)
 	return HttpResponseRedirect('/')

@@ -63,3 +63,15 @@ class ModelTests(TestCase):
 		
 		self.assertEquals(question_1.votes, 11)
 		
+	def test_questions_increment_votes_down(self):
+		"""
+		Test voting up a question
+		"""
+		question_1 = Question(text="Can you help me with Outlook?",
+							  votes=-4,
+							  created=datetime.datetime.utcnow().replace(tzinfo=utc),
+							  status="new")
+
+		question_1.increment_votes(-13)
+
+		self.assertEquals(question_1.votes, -17)

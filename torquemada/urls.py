@@ -7,7 +7,7 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'questions.views.home', name='home'),
-	url(r'^vote/(?P<pk>[^\.]+)/up/$', 'questions.views.voteup', name='voteup'),
+	url(r'^vote/(?P<pk>[^\.]+)/(?P<verb>[^\.]+)/$', 'questions.views.vote', name='vote'),
     # url(r'^torquemada/', include('torquemada.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
