@@ -30,3 +30,19 @@ class HomePageViewTest(TestCase):
 		
 		second_question = response.context['current_questions'][1]
 		self.assertEqual(second_question.text, "Does Selenium only work in Firefox?")
+		
+	def test_vote_on_question(self):
+		"""
+		Test that a hitting a URL will incrememt a question's vote count
+		"""
+		question_1 = Question(text="How can my team get started with testing?",
+							  votes=3,
+							  created=datetime.datetime.utcnow().replace(tzinfo=utc),
+							  status="new")
+		question_1.save()
+		
+		response = self.client.get('/vote/1/up/')
+		self.assertRedirects(response, '/')
+		
+		question_1_after_vote = Question.objects.get(id=1)
+		self.assertEqual(question_1.votes, 4)
