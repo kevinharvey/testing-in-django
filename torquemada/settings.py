@@ -1,4 +1,5 @@
 # Django settings for torquemada project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -151,6 +152,8 @@ LOGGING = {
     }
 }
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+# http://stackoverflow.com/questions/12771167/django-settings-py-dj-database-url-on-heroku
+if os.environ.get('DATABASE_URL'):
+    # Parse database configuration from $DATABASE_URL
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
