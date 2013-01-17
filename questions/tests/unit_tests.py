@@ -6,6 +6,9 @@ class HomePageViewTest(TestCase):
 		"""
 		Test the home page view
 		"""
+		q1 = Question(text="What are some good ways to get started testing?",
+					  date_asked=)
+		
 		response = self.client.get('/')
 		self.assertEquals(response.status_code, 200)
 		
