@@ -84,5 +84,5 @@ class FormTests(TestCase):
 		The user can only supply the text of a question
 		"""
 		form = QuestionForm()
-		self.assertNotEquals(form.fields.keys(), ['text'])
-		self.assertNotEquals(form.fields.keys(), ['text', 'votes', 'status', 'created'])
+		self.assertEquals(form.fields.keys(), ['text'])
+		self.assertNotEquals(form.fields.keys(), ['text', 'votes', 'status'])
