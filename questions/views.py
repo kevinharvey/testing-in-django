@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from questions.models import Question
 
 def home(request):
-	current_questions = Question.objects.all()
+	current_questions = Question.objects.all().order_by('-votes')
 	return render(request, 'home.html', {'current_questions': current_questions})
 	
 def voteup(request, pk):
