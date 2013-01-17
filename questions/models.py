@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class Question(models.Model):
+	text = models.CharField("Question", max_length=500)
+	votes = models.IntegerField()
+	status = models.CharField("Status", max_length=10,
+							  choices=(('new','new',),
+									   ('current','current',),
+									   ('archived','archived',))
+							 )
+	created = models.DateTimeField(auto_now_add=True)
