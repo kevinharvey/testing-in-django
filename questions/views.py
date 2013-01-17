@@ -2,10 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from questions.models import Question
+from questions.forms import QuestionForm
 
 def home(request):
 	current_questions = Question.objects.all().order_by('-votes')
-	return render(request, 'home.html', {'current_questions': current_questions})
+	form = QuestionForm()
+	return render(request, 'home.html', {'current_questions': current_questions,
+										 'form': form})
 	
 def vote(request, pk, verb):
 	q = Question.objects.get(id=pk)
@@ -17,6 +20,6 @@ def vote(request, pk, verb):
 	
 def ask(request):
 	if request.method == "POST":
-		new_question = Question(request.POST)
-		new_question.save()
+		question_form = QuestionForm(request.POST)
+		question_form.save()
 	return HttpResponseRedirect('/')

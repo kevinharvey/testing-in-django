@@ -52,5 +52,5 @@ class QuestionsTest(LiveServerTestCase):
 		text_field.send_keys("Why aren't using reverse() for your URLs in views?")
 		self.browser.find_element_by_css_selector("input#trq-submit-question").click()
 		
-		self.assertContains(self.browser.find_element_by_css_selector("div#trq-question-4 h4"),
-							"Why aren't using reverse() for your URLs in views?")
+		self.assertEqual(self.browser.find_element_by_css_selector("div#trq-question-4 h4").text,
+						 "Why aren't using reverse() for your URLs in views?")

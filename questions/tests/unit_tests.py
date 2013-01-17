@@ -56,7 +56,7 @@ class HomePageViewTest(TestCase):
 		
 		self.assertRedirects(response, '/')
 		
-		self.assertTrue(Question.objects.get(text='Is there any more pizza?'))
+		self.assertEqual(Question.objects.filter(text='Is there any more pizza?').count(), 1)
 		
 
 class ModelTests(TestCase):

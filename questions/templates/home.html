@@ -2,6 +2,11 @@
 
 <h1 id="trq-heading">Torquemada</h1>
 
+<form action="/ask/" method="POST">{% csrf_token %}
+	{{ form }}
+	<input id="trq-submit-question" type="submit" value="Submit your question">
+</form>
+
 {% for question in current_questions %}
 <div id="trq-question-{{ question.id }}" class="trq-question">
 	
