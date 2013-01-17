@@ -1,21 +1,72 @@
 {% load url from future %}
+<!DOCTYPE html>
 
-<h1 id="trq-heading">Torquemada</h1>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
-<form action="/ask/" method="POST">{% csrf_token %}
-	{{ form }}
-	<input id="trq-submit-question" type="submit" value="Submit your question">
-</form>
+<head>
+  <meta charset="utf-8" />
 
-{% for question in current_questions %}
-<div id="trq-question-{{ question.id }}" class="trq-question">
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Welcome to Torquemada</title>
+  
+  <link rel="stylesheet" href="/static/stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="/static/stylesheets/app.css">
+
+  <script src="/static/javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
 	
-	<h4>{{ question.text }}</h4>
-	
-	<span class="trq-vote-count">Votes: {{ question.votes }}</span>
-	
-	<a class="trq-vote-up" href="{% url 'vote' question.id 'up' %}">vote up</a> | 
-	<a class="trq-vote-down" href="{% url 'vote' question.id 'down' %}">vote down</a>
+	<div class="row">
+		
+		<div class="twelve columns">
+		
+			<h1 id="trq-heading">Torquemada</h1>
 
-</div>
-{% endfor %}
+			<form action="/ask/" method="POST">{% csrf_token %}
+				{{ form }}
+				<input id="trq-submit-question" type="submit" value="Submit your question">
+			</form>
+	
+			<hr />
+
+			{% for question in current_questions %}
+			<div id="trq-question-{{ question.id }}" class="trq-question panel">
+	
+				<h4>{{ question.text }}</h4>
+			
+				<span class="trq-vote-count">Votes: {{ question.votes }}</span>
+	
+				<p>
+					<a class="trq-vote-up" href="{% url 'vote' question.id 'up' %}">vote up</a> | 
+					<a class="trq-vote-down" href="{% url 'vote' question.id 'down' %}">vote down</a>
+				</p>
+
+			</div>
+			{% endfor %}
+		
+		</div>
+	
+	</div>
+	
+	<!-- Included JS Files (Compressed) -->
+	<script src="/static/javascripts/jquery.js"></script>
+	<script src="/static/javascripts/foundation.min.js"></script>
+
+	<!-- Initialize JS Plugins -->
+	<script src="/static/javascripts/app.js"></script>
+
+</body>
+</html>
