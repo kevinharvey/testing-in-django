@@ -16,4 +16,7 @@ def vote(request, pk, verb):
 	return HttpResponseRedirect('/')
 	
 def ask(request):
+	if request.method == "POST":
+		new_question = Question(request.POST)
+		new_question.save()
 	return HttpResponseRedirect('/')
