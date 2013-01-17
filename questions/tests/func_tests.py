@@ -1,7 +1,11 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 
+import time
+
 class QuestionsTest(LiveServerTestCase):
+	
+	fixtures = ['questions',]
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
@@ -23,7 +27,7 @@ class QuestionsTest(LiveServerTestCase):
 		question_1 = self.browser.find_element_by_css_selector("div#trq-question-1 h4")
 		self.assertEqual(question_1.text, "How can my team get started with testing?")
 		question_2 = self.browser.find_element_by_css_selector("div#trq-question-2 h4")
-		self.assertEqual(question_1.text, "Does Selenium only work in Firefox?")
+		self.assertEqual(question_2.text, "Does Selenium only work in Firefox?")
 		
 		# She sees a question that she'd like to have answered,
 		# and votes it up

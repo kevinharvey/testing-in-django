@@ -26,4 +26,7 @@ class HomePageViewTest(TestCase):
 		
 		self.assertTemplateUsed(response, 'home.html')
 		
-		self.assertIn(response.body, "How can my team get started with testing?")
+		self.assertTrue('current_questions' in response.context)
+		
+		second_question = response.context['current_questions'][1]
+		self.assertEqual(second_question.text, "Does Selenium only work in Firefox?")
