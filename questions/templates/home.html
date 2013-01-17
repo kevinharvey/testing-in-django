@@ -9,7 +9,8 @@
 	
 	<span class="trq-vote-count">Votes: {{ question.votes }}</span>
 	
-	<a class="trq-vote-up" href="{% url 'voteup' question.id %}">vote up</a>
+	<a class="trq-vote-up" href="{% url 'vote' question.id 'up' %}">vote up</a> | 
+	<a class="trq-vote-down" href="{% url 'vote' question.id 'down' %}">vote down</a>
 
 </div>
 {% endfor %}
