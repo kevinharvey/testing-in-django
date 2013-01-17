@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'questions.views.home', name='home'),
 	url(r'^vote/(?P<pk>[^\.]+)/(?P<verb>[^\.]+)/$', 'questions.views.vote', name='vote'),
+	url(r'^ask/$', 'questions.views.ask', name='ask'),
     # url(r'^torquemada/', include('torquemada.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

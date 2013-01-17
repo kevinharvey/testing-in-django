@@ -14,3 +14,6 @@ def vote(request, pk, verb):
 	elif verb == "down":
 		q.increment_votes(-1)
 	return HttpResponseRedirect('/')
+	
+def ask(request):
+	return HttpResponseRedirect('/')
