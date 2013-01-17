@@ -48,6 +48,16 @@ class HomePageViewTest(TestCase):
 		question_1_after_vote = Question.objects.get(id=1)
 		self.assertEqual(question_1_after_vote.votes, 4)
 		
+	def test_ask_question(self):
+		"""
+		Test that POSTing the right data will result in a new question
+		"""
+		response = self.client.post('/ask/', {'question': 'Is there any more pizza?'})
+		
+		self.assertRedirects(response, '/')
+		
+		self.assertTrue(Question.objects.get(text='Is there any more pizza?'))
+		
 
 class ModelTests(TestCase):
 	
