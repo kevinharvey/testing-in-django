@@ -1,4 +1,5 @@
 from django.test import LiveServerTestCase
+from django.core.urlresolvers import reverse
 from selenium import webdriver
 
 import time
@@ -28,12 +29,17 @@ class QuestionsTest(LiveServerTestCase):
 		vote_tally = self.browser.find_element_by_css_selector("div#trq-question-1 .trq-vote-count")
 		self.assertEqual(vote_tally.text, "Votes: 1")
 
-		# He is of a dubious character and tries to vote up the same question again
+		# He is of a dubious character and tries to vote up the same question by URL
+		# He must do by URL because we remove upvote link after successful vote
 		# However, you may only vote on a question a single time
-		vote_for_1 = self.browser.find_element_by_css_selector("div#trq-question-1 a.trq-vote-up").click()
+		self.browser.get(self.live_server_url + reverse('vote', args=[1, "up"]))
 		vote_tally = self.browser.find_element_by_css_selector("div#trq-question-1 .trq-vote-count")
 		self.assertEqual(vote_tally.text, "Votes: 1")
 
+		# He changes his mind and votes down the question
+		down_vote_for_1 = self.browser.find_element_by_css_selector("div#trq-question-1 a.trq-vote-down").click()
+		vote_tally = self.browser.find_element_by_css_selector("div#trq-question-1 .trq-vote-count")
+		self.assertEqual(vote_tally.text, "Votes: -1")
 
 	def test_can_read_vote_and_ask_a_question(self):
 		# Isabel opens her web browser and visits Torquemada
