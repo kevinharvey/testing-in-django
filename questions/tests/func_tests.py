@@ -14,6 +14,27 @@ class QuestionsTest(LiveServerTestCase):
 	def tearDown(self):
 		self.browser.quit()
 
+	def test_can_vote_only_once_per_question(self):
+		# Bruce opens his web browser and visits Torquemada
+		self.browser.get(self.live_server_url + '/')
+
+		# He knows it's Torquemada because he sees the name
+		# in the heading
+		heading = self.browser.find_element_by_css_selector("h1#trq-heading")
+		self.assertEqual(heading.text, "Torquemada")
+				
+		# He sees a question that he'd like to have answered, and votes it up
+		vote_for_1 = self.browser.find_element_by_css_selector("div#trq-question-1 a.trq-vote-up").click()
+		vote_tally = self.browser.find_element_by_css_selector("div#trq-question-1 .trq-vote-count")
+		self.assertEqual(vote_tally.text, "Votes: 1")
+
+		# He is of a dubious character and tries to vote up the same question again
+		# However, you may only vote on a question a single time
+		vote_for_1 = self.browser.find_element_by_css_selector("div#trq-question-1 a.trq-vote-up").click()
+		vote_tally = self.browser.find_element_by_css_selector("div#trq-question-1 .trq-vote-count")
+		self.assertEqual(vote_tally.text, "Votes: 1")
+
+
 	def test_can_read_vote_and_ask_a_question(self):
 		# Isabel opens her web browser and visits Torquemada
 		self.browser.get(self.live_server_url + '/')
