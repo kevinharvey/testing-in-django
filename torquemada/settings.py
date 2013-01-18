@@ -166,5 +166,5 @@ if os.environ.get('DATABASE_URL'):
 
 try:
 	from local_settings import *
-except:
+except ImportError:
 	pass
