@@ -9,3 +9,6 @@ psycopg2==2.4.6
 pylint==0.26.0
 selenium==2.28.0
 wsgiref==0.1.2
+webtest
+django_webtest
+beautifulsoup4
