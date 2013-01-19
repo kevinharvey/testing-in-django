@@ -1,7 +1,7 @@
 from django_webtest import WebTest
 from bs4 import BeautifulSoup
 
-class QuestionsTest(WebTest):
+class WebTestQuestionsTest(WebTest):
 	
 	fixtures = ['questions', 'admin_users']
 
