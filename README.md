@@ -8,7 +8,6 @@ Quickstart
 
 Just wanna see some Selenium fireworks? Grab this code and run these commands in the directory you just created.
 
-    pip install django
-    pip install selenium
+    pip install -r local-requirements.txt
     python manage.py test questions.QuestionsTest
 
