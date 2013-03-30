@@ -1,0 +1,11 @@
+{% load url from future %}
+{% if vote > 0 %}
+<a class="trq-vote-cancel" href="{% url 'cancel_vote' question.id %}">cancel vote</a>
+{% else %}
+<a class="trq-vote-up" href="{% url 'vote' question.id 'up' %}">vote up</a>
+{% endif %} | 
+{% if vote < 0 %}
+<a class="trq-vote-cancel" href="{% url 'cancel_vote' question.id %}">cancel vote</a>
+{% else %}
+<a class="trq-vote-down" href="{% url 'vote' question.id 'down' %}">vote down</a>
+{% endif %}

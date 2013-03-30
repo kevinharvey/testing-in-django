@@ -9,7 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'questions.views.home', name='home'),
-	url(r'^vote/(?P<pk>[^\.]+)/(?P<verb>[^\.]+)/$', 'questions.views.vote', name='vote'),
+    url(r'^vote/(?P<pk>[^\.]+)/(?P<verb>[^\.]+)/$', 'questions.views.vote', name='vote'),
+    url(r'^cancel_vote/(?P<pk>[^\.]+)/$', 'questions.views.cancel_vote', name='cancel_vote'),
 	url(r'^ask/$', 'questions.views.ask', name='ask'),
     # url(r'^torquemada/', include('torquemada.foo.urls')),
 

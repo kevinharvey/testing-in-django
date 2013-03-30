@@ -164,6 +164,9 @@ if os.environ.get('DATABASE_URL'):
     import dj_database_url
     DATABASES['default'] =  dj_database_url.config()
 
+# Torquemada defined variables
+TORQUEMADA_SESSION_VOTES_PREFIX = 'vote_for_'
+
 try:
 	from local_settings import *
 except ImportError:
